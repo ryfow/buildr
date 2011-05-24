@@ -326,7 +326,7 @@ module Buildr
       def to_spec(hash)
         hash = to_hash(hash) unless Hash === hash
         version = ":#{hash[:version]}" if hash[:version]
-        classifier = ":#{hash[:classifier]}" if hash[:classifier]
+        classifier = ":#{hash[:classifier]}" if hash[:classifier] && hash[:classifier] != ''
         "#{hash[:group]}:#{hash[:id]}:#{hash[:type] || DEFAULT_TYPE}#{classifier}#{version}"
       end
 

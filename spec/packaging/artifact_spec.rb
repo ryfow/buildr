@@ -1085,6 +1085,11 @@ XML
   it 'should bring artifact and transitive depenencies' do
     transitive(@transitive).should eql(artifacts(@transitive, @complex, @simple - [@provided]))
   end
+
+  it 'should ignore empty classifiers' do
+    spec = Artifact.to_spec({ :group=>'com.example', :id=>'library', :type=>:jar, :version=>'2.0', :classifier => '' })
+    spec.should eq('com.example:library:jar:2.0')
+  end
 end
 
 def modified?(old_mtime, spec)
